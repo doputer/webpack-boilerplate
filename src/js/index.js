@@ -1,4 +1,4 @@
-require('../scss/index.scss');
+import '../scss/index.scss';
 
 function component() {
   const element = document.createElement('div');
