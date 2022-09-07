@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: 'none',
+  devtool: 'eval-source-map',
   entry: './src/js/index.js',
   output: {
     filename: 'app.bundle.js',
