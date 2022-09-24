@@ -1,11 +1,11 @@
-import '../scss/index.scss';
+import '@/styles/index.scss';
 
-function component() {
+const render = () => {
   const element = document.createElement('div');
 
   element.innerHTML = 'Hello, webpack!';
 
   return element;
-}
+};
 
-document.body.appendChild(component());
+document.querySelector('#root').appendChild(render());

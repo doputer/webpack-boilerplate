@@ -1,11 +1,21 @@
-const path = require('path');
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
-  mode: 'none',
-  devtool: 'eval-source-map',
-  entry: './src/js/index.js',
+const __dirname = path.resolve();
+
+const isDev = process.env.NODE_ENV === 'dev';
+
+export default {
+  mode: isDev ? 'development' : 'production',
+  devtool: isDev ? 'source-map' : 'hidden-source-map',
+  devServer: {
+    historyApiFallback: true,
+    port: 9000,
+    hot: true,
+  },
+  entry: './src/index.js',
   output: {
-    filename: 'app.bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
@@ -20,5 +30,15 @@ module.exports = {
         use: 'babel-loader',
       },
     ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+    },
   },
 };
